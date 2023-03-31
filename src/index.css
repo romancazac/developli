@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-readex  text-textColor h-full text-sm;
+  }
+}
+
+@layer components {
+  .container{   
+    @apply max-w-[1260px]
+  }
+  .section-main{
+    @apply  pl-[max(15px,calc((100%-1230px)/2))]
+  }
+  .header__items{
+    @apply flex justify-between items-center max-w-[930px] w-[100%] lg:flex-col  lg:fixed lg:left-0 lg:top-0 lg:w-[100%] lg:h-[100%] z-10 lg:bg-[#f0f2c7d3] lg:py-[50px] lg:justify-start
+  }
+  ._ibg img{
+    @apply absolute w-[100%] h-[100%] object-contain object-top 
+  }
+  .parteners.swiper-slide-active{
+    @apply bg-textColor text-[#eaedb6]
+  }
+  .shadow {
+    box-shadow: 0px 165.637px 385.899px rgba(0, 0, 0, 0.06), 0px 82.8655px 145.83px rgba(0, 0, 0, 0.0235788), 0px 49.388px 68.4091px rgba(0, 0, 0, 0.0123733), 0px 25.0842px 27.8318px rgba(0, 0, 0, 0.00550488);
+  }
+  .shadow-bar{
+    box-shadow: 0px 4px 120px rgba(151, 159, 183, 0.15);
+  }
+}
+body{
+  background: linear-gradient(179.34deg, rgba(193, 227, 211, 0.52) 0.57%, rgba(245, 248, 252, 0.45) 19.85%), #FBF3E5 ;
+
+}
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../public/assets/fonts/icomoon.eot?14fuor');
+  src:  url('../public/assets/fonts/icomoon.eot?14fuor#iefix') format('embedded-opentype'),
+    url('../public/assets/fonts/icomoon.ttf?14fuor') format('truetype'),
+    url('../public/assets/fonts/icomoon.woff?14fuor') format('woff'),
+    url('../public/assets/fonts/icomoon.svg?14fuor#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-02:before {
+  content: "\e901";
+ 
+}
+.icon-03:before {
+  content: "\e903";
+}
+.icon-04:before {
+  content: "\e906";
+}
+.icon-05 .path1:before {
+  content: "\e909";
+  color: rgba(17, 3, 3, 0.079);
+}
+.icon-05 .path2:before {
+  content: "\e90b";
+  margin-left: -1.970703125em;
+  color: rgb(45, 45, 45);
+}
+.icon-05 .path3:before {
+  content: "\e910";
+  margin-left: -1.970703125em;
+  color: rgb(255, 255, 255);
+}
+.icon-06:before {
+  content: "\e911";
+}
+.icon-07:before {
+  content: "\e912";
+}
+.icon-01:before {
+  content: "\e90f";
+}
+.icon-analist:before {
+  content: "\e900";
+}
+.icon-arr-filter:before {
+  content: "\e902";
+}
+.icon-brain:before {
+  content: "\e904";
+}
+.icon-cam:before {
+  content: "\e905";
+}
+.icon-fb:before {
+  content: "\e907";
+}
+.icon-insta:before {
+  content: "\e908";
+}
+.icon-rate:before {
+  content: "\e90a";
+}
+.icon-twit:before {
+  content: "\e90c";
+}
+.icon-user:before {
+  content: "\e90d";
+}
+.icon-file-text2:before {
+  content: "\e926";
+}
+.icon-coin-dollar:before {
+  content: "\e93b";
+}
+.icon-location2:before {
+  content: "\e948";
+}
+.icon-search:before {
+  content: "\e986";
+}
+.icon-heart:before {
+  content: "\e9da";
+}
+.icon-arrow-right2:before {
+  content: "\ea3c";
+}
