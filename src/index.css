@@ -30,6 +30,15 @@
   .shadow-bar{
     box-shadow: 0px 4px 120px rgba(151, 159, 183, 0.15);
   }
+  .modal__after{
+    @apply  after:w-[2px] after:h-[2px] after:rounded after:bg-gray after:block after:absolute after:right-[-12px]
+  }
+  .after__line{
+    @apply after:w-[2px] after:h-[30px]  after:bg-[#F3F3F3] after:block after:absolute after:right-[0] after:top-[50%] after:translate-y-[-50%]
+  }
+  .before__circle{
+    @apply before:w-[16px] before:h-[16px]  before:border-[6px] before:border-[#47D18C] before:rounded-[50%] before:block before:absolute before:left-[0] before:top-[50%] before:translate-y-[-50%] pl-6
+  }
 }
 body{
   background: linear-gradient(179.34deg, rgba(193, 227, 211, 0.52) 0.57%, rgba(245, 248, 252, 0.45) 19.85%), #FBF3E5 ;

@@ -1,15 +1,35 @@
 
-import { Checkbox,Typography } from "@material-tailwind/react";
+import { Checkbox, Typography } from "@material-tailwind/react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { setFilters } from "../../redux/slices/filterSlice";
 
 
 
 
-export const CheckboxC = ({name}) => {
-   return (
+export const CheckboxC = ({ title, id,label}) => {
+   
+   const dispatch = useDispatch();
+
+
+   const handleCheckboxChange = (e,title) => {
+      const value = e.target.title
+ 
+     dispatch(setFilters({ title, value }));
       
+    };
+    
+
+
+   return (
+
       <Checkbox
-         id={name}
+         id={title}
+       
          className='hover:before:hidden checked:bg-green checked:border-0 border-grey'
+         title={label}
+         name={title}
+         onChange={e =>  handleCheckboxChange(e,title)}
          label={
             (
                <Typography
@@ -17,14 +37,15 @@ export const CheckboxC = ({name}) => {
                   color="gray"
                   className=" font-normal"
                >
-                  {name}
-                 
+                  {title}
+
                </Typography>
             )
-         
+
          }
+
          containerProps={{ className: "-ml-2.5 " }}
-        
+
       />
    )
 }

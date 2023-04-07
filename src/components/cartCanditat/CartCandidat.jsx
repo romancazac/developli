@@ -1,6 +1,25 @@
-import React from 'react'
+import { Button } from '@material-tailwind/react';
+import React, { useEffect, useState } from 'react'
+import { useAppServices } from '../../services/jobServices';
+import PopUp from '../popUp/PopUp'
 
-export const CartCandidat = ({ name, avatar, text, author, salary, country, types }) => {
+export const CartCandidat = ({id, name, avatar, text, author, salary, country, types }) => {
+   const {getJob} = useAppServices()
+   const [open, setOpen] = useState(false);
+   const [job, setJob] = useState({})
+   const handleOpen = (idn) => {
+      if(idn){
+         getJob(idn).then((data) => setJob(data))
+      }
+  
+      setOpen((cur) => !cur)
+   
+   };
+
+   console.log(job)
+   useEffect(() => {
+      
+   },[])
    return (
       <div className='bg-[rgba(255,255,255,0.8)] rounded-[16px] shadow-bar p-6 text-gray mb-9'>
          <div className="flex justify-between items-center mb-6">
@@ -38,8 +57,13 @@ export const CartCandidat = ({ name, avatar, text, author, salary, country, type
          </div>
          <div className="flex gap-4">
             <button className='bg-green text-white px-8 py-4 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75'><span className='icon-file-text2'></span> Apply Now</button>
-            <button className='bg-[#F3F3F3] text-gray px-8 py-4 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75'>Apply Now</button>
+            <button onClick={ () =>  handleOpen(id)} className='bg-[#F3F3F3] text-gray px-8 py-4 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75'>Detail Information</button>
          </div>
+
+         <PopUp {...job} handleOpen={handleOpen} open={open}/>
+            
+         
+       
       </div>
    )
 }

@@ -6,7 +6,8 @@ export const Aside = () => {
    const asideData = [
       {
          id: 1,
-         title: 'Type of employment',
+         title: 'Experience Level',
+         label:'experience',
          items: [
             {
                title: '0-2 years',
@@ -35,6 +36,7 @@ export const Aside = () => {
       {
          id: 2,
          title: 'Category',
+         label:'category',
          items: [
             {
                title: 'Develope',
@@ -63,6 +65,7 @@ export const Aside = () => {
       {
          id: 3,
          title: 'Type of employment',
+         label:'employment',
          items: [
             {
                title: 'Fulltime',
@@ -71,22 +74,22 @@ export const Aside = () => {
             },
             {
                title: 'Part-Time',
-               id: 1,
+               id: 2,
                count: 713
             },
             {
                title: 'Remote',
-               id: 2,
-               count: 188
-            },
-            {
-               title: 'Internship/Trainee',
                id: 3,
                count: 188
             },
             {
-               title: 'Hourly',
+               title: 'Internship/Trainee',
                id: 4,
+               count: 188
+            },
+            {
+               title: 'Hourly',
+               id: 5,
                count: 188
             },
          ]
@@ -96,6 +99,7 @@ export const Aside = () => {
       {
          id: 4,
          title: 'Salary Range',
+         label:'salary',
          items: [
             {
                title: '2000',
@@ -129,6 +133,7 @@ export const Aside = () => {
       {
          id: 5,
          title: 'Location',
+         label:'location',
          items: [
             {
                title: 'Saudi Arabia',
@@ -160,7 +165,7 @@ export const Aside = () => {
 
 
    return (
-      <aside className="flex-initial w-[315px]">
+      <aside className="flex-shrink-0 w-[315px]">
          <div className="bg-white rounded-[12px] px-[20px] py-[25px]">
             {
                asideData.map((item) =>
