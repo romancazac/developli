@@ -16,10 +16,6 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
    
    };
 
-   console.log(job)
-   useEffect(() => {
-      
-   },[])
    return (
       <div className='bg-[rgba(255,255,255,0.8)] rounded-[16px] shadow-bar p-6 text-gray mb-9'>
          <div className="flex justify-between items-center mb-6">
@@ -48,7 +44,7 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
 
          <div className="flex flex-wrap gap-3 mb-[30px]">
             {
-               types.map((type, i) =>
+               types.split(',').map((type, i) =>
                   <span key={i} className='bg-[#F9F9F9] px-[14px] py-2 font-medium rounded-xl hover:text-green'>{type}</span>
                )
 

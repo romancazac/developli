@@ -6,7 +6,7 @@ import Select from '../ui/Select'
 export const TopCandidats = () => {
   const { experience, category, employment, salary, location } = useSelector(state => state.filter);
   const arrLabel = [...experience, ...category, ...employment, ...salary, ...location];
-  console.log(arrLabel)
+
   const dataSort = [
     {
       id: 1,

@@ -3,15 +3,23 @@ import axios from "axios";
 import { BASE_URL } from "../../constants";
 
 // First, create the thunk
-export const fetchJobs= createAsyncThunk(
+export const fetchJobs = createAsyncThunk(
    'jobs/fetchJobsStatus',
    async (params) => {
-      // const { category, sort,  search,  page, brands } = params; 
-      const  response  = await axios.get(`${BASE_URL}/jobs`)
+      const { 
+         filterExp, 
+         filterCategory,
+         filterEmployment,
+         filterSalary,
+         filterLocation,
+         sortFinal
+      } = params;
+
+      const response = await axios.get(`${BASE_URL}/jobs?${filterExp}${filterCategory}${filterEmployment}${filterSalary}${filterLocation}${sortFinal}`)
       const totalCount = response.headers['x-total-count'];
 
       return response.data
-      
+
       // return {
       //    jobs: response.data,
       //    totalCount
@@ -22,7 +30,7 @@ export const fetchJobs= createAsyncThunk(
 const initialState = {
    jobsData: [],
    totalCount: 0,
-   status:"loading"
+   status: "loading"
 
 
 }
@@ -40,22 +48,22 @@ export const jobsSlice = createSlice({
    extraReducers: {
       [fetchJobs.pending]: (state) => {
          state.status = 'loading';
-         state.jobsData= [];
+         state.jobsData = [];
          state.totalCount = 0;
       },
       [fetchJobs.fulfilled]: (state, action) => {
-         state.jobsData= action.payload;
-        
-   
+         state.jobsData = action.payload;
+
+
          state.status = 'succes';
       },
       [fetchJobs.rejected]: (state) => {
          state.status = 'error';
-         state.jobsData= [];
+         state.jobsData = [];
          state.totalCount = 0;
       },
    }
 })
 
-export const { setJobs} = jobsSlice.actions;
+export const { setJobs } = jobsSlice.actions;
 export default jobsSlice.reducer

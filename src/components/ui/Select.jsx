@@ -1,15 +1,21 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon } from '@heroicons/react/20/solid'
+import { useDispatch } from 'react-redux'
+import { setSort } from '../../redux/slices/filterSlice';
 
 
 
 
 export default function Select({data,className=null}) {
+   const dispatch = useDispatch();
    const [selected, setSelected] = useState(data[0])
    function classNames(...classes) {
       return classes.filter(Boolean).join(' ')
    }
+   useEffect(() => {
+      dispatch(setSort(selected))
+   },[selected])
    
    return (
       <Listbox value={selected} onChange={setSelected}>
