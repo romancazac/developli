@@ -7,13 +7,13 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function PopUp({ handleOpen, open, avatar, name, author, country,types,level,experience,requirements,text,salary }) {
+export default function PopUp({ handleOpen, open, avatar, name, author, country, types, level, experience, requirements, text, salary }) {
 
 
    return (
       <React.Fragment>
 
-         <Dialog size="lg" open={open} handler={handleOpen} className="max-w-[715px!important] min-w-[auto] p-5">
+         <Dialog size="lg" open={open} handler={handleOpen} className="max-w-[715px!important] min-w-[auto] md:min-w-[100%] p-5">
             <div className="flex justify-between items-center mb-6">
                <img src={avatar} alt={name} />
                <div className="flex items-center gap-4 ">
@@ -23,7 +23,7 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                </div>
             </div>
 
-            <DialogBody className="overflow-y-auto p-0">
+            <DialogBody className="overflow-y-auto p-0 md:h-96">
                <div className="flex items-center gap-5 mb-[15px]">
                   <span className='relative text-[#1F8FFF]  flex items-center modal__after'>{author}</span>
                   <span className='relative gap-[8px] flex items-center modal__after'>
@@ -34,8 +34,8 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                      Posted 16 hours ago
                   </span>
                </div>
-               <div className="flex px-5 py-6 border border-[#F3F3F3] rounded-2xl gap-5 mb-10">
-                  <div className="relative w-1/4 after__line">
+               <div className="flex px-5 py-6 border border-[#F3F3F3] rounded-2xl gap-5 mb-10 md:overflow-x-auto">
+                  <div className="relative w-1/4 flex-shrink-0 w-[115px] after__line">
                      <span className="block mb-[5px]">Experience</span>
                      <span className="flex items-center gap-2  text-sm font-semibold text-[#1B2124]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -45,7 +45,7 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                      </span>
 
                   </div>
-                  <div className="relative w-1/4 after__line">
+                  <div className="relative w-1/4  flex-shrink-0 w-[130px] after__line">
                      <span className="block mb-[5px]">Work Level</span>
                      <span className="flex items-center gap-2  text-sm font-semibold text-[#1B2124]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -55,7 +55,7 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                      </span>
 
                   </div>
-                  <div className="relative w-1/4 after__line">
+                  <div className="relative w-1/4  flex-shrink-0 w-[130px] after__line">
                      <span className="block mb-[5px]">Employee Type</span>
                      <span className="flex items-center gap-2  text-sm font-semibold text-[#1B2124]">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -65,7 +65,7 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                      </span>
 
                   </div>
-                  <div className="relative w-1/4 ">
+                  <div className="relative w-1/4 flex-shrink-0 w-[130px]  ">
                      <span className="block mb-[5px]">Offer Salary</span>
                      <span className="flex items-center gap-2  text-sm font-semibold text-[#1B2124]">
                         <span className='icon-coin-dollar text-[18px]'></span>
@@ -81,7 +81,7 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                <div className="mb-10">
                   <h5 className="text-[#1B2124] text-lg font-bold mb-4 ">Requirements</h5>
                   <ul>
-                     {requirements?.map((r,i) =>
+                     {requirements?.map((r, i) =>
                         <li key={i} className="relative before__circle mb-3">{r}</li>
                      )}
                   </ul>

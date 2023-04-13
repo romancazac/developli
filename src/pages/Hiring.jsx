@@ -8,7 +8,7 @@ import { TopCandidats } from '../components/topCandidats/TopCandidats'
 import { useSelector } from 'react-redux'
 
 
-export const Candidats = () => {
+export const Hiring = () => {
   const {jobsData} = useSelector(state => state.jobs)
 
   return (
@@ -19,10 +19,10 @@ export const Candidats = () => {
           <Aside />
           <div className="flex-auto">
             <TopCandidats />
-            <div>
+            <div className='flex flex-wrap gap-5 '>
               {
                 jobsData.map((item) =>
-                  <CartCandidat {...item} key={item.id} />
+                  <CartCandidat classN='flex-[0_1_calc(50%-20px)] mb-[0] xl:flex-auto  ' {...item} key={item.id} />
                 )
               }
 

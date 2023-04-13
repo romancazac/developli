@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import {
   Accordion,
   AccordionHeader,
@@ -8,14 +8,8 @@ import {
 import { CheckboxC } from "./CheckboxC";
 
 
-export default function Spollers({ item }) {
-  const [open, setOpen] = useState(1);
-
-  const handleOpen = (value) => {
-
-    setOpen(open === value ? 0 : value);
-  };
-
+export default function Spollers({ item,handleOpen,open }) {
+ 
 
 
   return (

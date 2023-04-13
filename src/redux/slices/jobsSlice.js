@@ -15,9 +15,9 @@ export const fetchJobs = createAsyncThunk(
          sortFinal
       } = params;
 
-      const response = await axios.get(`${BASE_URL}/jobs?${filterExp}${filterCategory}${filterEmployment}${filterSalary}${filterLocation}${sortFinal}`)
-      const totalCount = response.headers['x-total-count'];
-
+      const response = await axios.get(`${BASE_URL}/jobs?${filterExp}${filterCategory}${filterEmployment}${filterSalary}${filterLocation}${sortFinal}&_start=0`)
+      // const totalCount = response.headers['x-total-count'];
+ 
       return response.data
 
       // return {

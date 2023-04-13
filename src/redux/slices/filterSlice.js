@@ -7,7 +7,9 @@ const initialState = {
    employment: [],
    salary: [],
    location: [],
-   sort:''
+   sort:'',
+   openFilter:false,
+   isMob:false
 
 
 }
@@ -40,10 +42,16 @@ export const filterSlice = createSlice({
       },
       setSort(state, action) {
          state.sort = action.payload
+      },
+      setOpenFilter(state, action) {
+         state.openFilter = action.payload
+      },
+      setIsMob(state, action) {
+         state.isMob = action.payload
       }
 
    }
 })
 
-export const { setFilters, setSort } = filterSlice.actions;
+export const { setFilters, setSort,setOpenFilter, setIsMob } = filterSlice.actions;
 export default filterSlice.reducer

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchJobs } from './redux/slices/jobsSlice'
 import { useState } from "react"
 import { transformArr } from "./utils/transformArr"
+import { Hiring } from "./pages/Hiring"
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
   // filters
   const exp = experience.map(item => `&experience=${item}`)
-  const cat = category.map(item => `&category=${item}`)
+  const cat = category.map(item => `category=${item}`)
   const empl = employment.map(item => `&q=${item}`)
   const sal = salary.map(item => `&salary=${item}`)
   const loc = location.map(item => `&country=${item}`)
@@ -49,6 +50,7 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/candidats" element={<Candidats />} />
+          <Route path="/hiring" element={<Hiring/>} />
           <Route path="/company" element={<Company />} />
           <Route path="/blog" element={<Blog />} />
 

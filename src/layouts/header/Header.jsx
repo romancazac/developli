@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
 import { Navigation } from '../../components/navigation/Navigation'
 import { Button } from '../../components/ui/Button'
@@ -21,8 +22,8 @@ export const Header = () => {
             </div>
 
             <div className="flex gap-2 lg:flex-col">
-              <Button className={'bg-white text-gray border lg:w-[200px]'}>Start hiring</Button>
-              <Button className={'bg-textColor text-white '}>Find a job</Button>
+              <Link to='hiring' className='rounded-xl py-3 px-4  hover:scale-105 ease-in duration-300bg-white text-gray border lg:w-[200px]'>Start hiring</Link>
+              <Link to='candidats' className='rounded-xl py-3 px-4  hover:scale-105 ease-in duration-300 bg-textColor text-white '>Find a job</Link>
             </div>
           </div>
           <button onClick={onMenu} className={`hidden lg:block relative w-[30px] h-[20px] z-50 group ${openMenu ? 'active ' : ''}`}>

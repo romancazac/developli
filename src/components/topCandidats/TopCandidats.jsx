@@ -28,11 +28,11 @@ export const TopCandidats = () => {
     <div className=' mb-9'>
       <div className="flex justify-between mb-7">
         <div className="mr-[15px]">
-          <h1 className="text-black text-2xl font-bold mb-2">Recomendation</h1>
+          <h1 className="text-black text-2xl font-bold mb-2 sm:text-base">Recomendation</h1>
           <p className="text-gray ">38 product designer Jobs in United States</p>
         </div>
         <div className="flex items-center gap-[12px]">
-          <span className='whitespace-nowrap text-gray '>sort by: </span>
+          <span className='whitespace-nowrap text-gray md:hidden'>sort by: </span>
           <Select data={dataSort} className={'bg-white w-[144px] rounded-[16px]'} />
         </div>
       </div>

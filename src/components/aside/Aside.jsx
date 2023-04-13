@@ -1,13 +1,19 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsMob, setOpenFilter } from "../../redux/slices/filterSlice";
+
+
 import Spollers from '../ui/Spollers'
-import Accordion from '../ui/Spollers'
+
 
 export const Aside = () => {
+   const dispatch = useDispatch()
+   const { openFilter } = useSelector(state => state.filter);
    const asideData = [
       {
          id: 1,
          title: 'Experience Level',
-         label:'experience',
+         label: 'experience',
          items: [
             {
                title: '0-2 years',
@@ -36,7 +42,7 @@ export const Aside = () => {
       {
          id: 2,
          title: 'Category',
-         label:'category',
+         label: 'category',
          items: [
             {
                title: 'Develope',
@@ -65,7 +71,7 @@ export const Aside = () => {
       {
          id: 3,
          title: 'Type of employment',
-         label:'employment',
+         label: 'employment',
          items: [
             {
                title: 'Fulltime',
@@ -99,7 +105,7 @@ export const Aside = () => {
       {
          id: 4,
          title: 'Salary Range',
-         label:'salary',
+         label: 'salary',
          items: [
             {
                title: '2000',
@@ -133,7 +139,7 @@ export const Aside = () => {
       {
          id: 5,
          title: 'Location',
-         label:'location',
+         label: 'location',
          items: [
             {
                title: 'Saudi Arabia',
@@ -167,18 +173,68 @@ export const Aside = () => {
 
 
    ]
+   const [open, setOpen] = useState(1);
 
+   const handleOpen = (value) => {
+      setOpen(open === value ? 0 : value);
+   };
+
+
+
+   const renderTopMob = () => {
+      return (
+         <>
+            {
+               openFilter &&
+               <div className="flex justify-between items-center mb-8">
+                  <button className="text-[#1B2124] font-bold">Filters</button>
+                  <button className="text-[#EE5566]">Clear</button>
+               </div>
+            }
+         </>
+
+      )
+   }
+   const resizeW = () => {
+
+      if (window.innerWidth < 767) {
+         dispatch(setIsMob(true));
+         
+      } else {
+         dispatch(setIsMob(false));
+      }
+
+   };
+
+   useEffect(() => {
+      window.addEventListener("resize", resizeW);
+
+      return () => {
+         window.removeEventListener("resize", resizeW);
+      };
+   }, []);
 
    return (
-      <aside className="flex-shrink-0 w-[315px]">
-         <div className="bg-white rounded-[12px] px-[20px] py-[25px]">
-            {
-               asideData.map((item) =>
-                  <Spollers key={item.id} item={item}/>
-               )
-            }
+      <>
 
-         </div>
-      </aside>
+         <aside className={`flex-shrink-0 w-[315px] md:fixed md:left-0 md:top-0 md:w-full md:h-full z-20  ${openFilter ? 'md:block' : 'md:hidden'}`} >
+            <div className="bg-white rounded-[12px] px-[20px] py-[25px] md:h-full md:flex md:flex-col">
+               {renderTopMob()}
+               {
+                  asideData.map((item) =>
+                     <Spollers key={item.id} item={item} handleOpen={handleOpen} open={open} />
+                  )
+               }
+               {openFilter &&
+                  <button
+                     onClick={() => dispatch(setOpenFilter(false))}
+                     className='bg-green text-white px-8 py-4 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75 w-full mt-auto'> Show</button>}
+
+            </div>
+         </aside>
+
+
+
+      </>
    )
 }
