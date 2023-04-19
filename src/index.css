@@ -5,6 +5,7 @@
 @layer base {
   body {
     @apply font-readex  text-textColor h-full text-sm;
+    background: linear-gradient(179.34deg, rgba(193, 227, 211, 0.52) 0.57%, rgba(245, 248, 252, 0.45) 19.85%), #FBF3E5 ;
   }
 }
 
@@ -20,6 +21,9 @@
   }
   ._ibg img{
     @apply absolute w-[100%] h-[100%] object-contain object-top 
+  }
+  ._ibg-cover img{
+    @apply object-cover
   }
   .parteners.swiper-slide-active{
     @apply bg-textColor text-[#eaedb6]
@@ -39,11 +43,11 @@
   .before__circle{
     @apply before:w-[16px] before:h-[16px]  before:border-[6px] before:border-[#47D18C] before:rounded-[50%] before:block before:absolute before:left-[0] before:top-[50%] before:translate-y-[-50%] pl-6
   }
+  .btn-block {
+    @apply bg-white text-gray border px-6 rounded-[12px] gap-2 flex items-center justify-center max-w-[140px] h-11 hover:text-green ease-in duration-300 whitespace-nowrap
+  }
 }
-body{
-  background: linear-gradient(179.34deg, rgba(193, 227, 211, 0.52) 0.57%, rgba(245, 248, 252, 0.45) 19.85%), #FBF3E5 ;
 
-}
 @font-face {
   font-family: 'icomoon';
   src:  url('../public/assets/fonts/icomoon.eot?14fuor');

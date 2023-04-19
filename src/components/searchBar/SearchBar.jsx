@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Select from '../ui/Select'
 import { setOpenFilter } from "../../redux/slices/filterSlice";
-export const SearchBar = () => {
+export const SearchBar = ({children}) => {
    const { isMob } = useSelector(state => state.filter);
 
    const dispatch = useDispatch() 
