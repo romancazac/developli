@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Section } from '../section/Section'
 
 export const ArticlesBlog = ({ data }) => {
-   console.log()
+   
    return (
       <Section>
 
@@ -20,7 +20,7 @@ export const ArticlesBlog = ({ data }) => {
 
                {
                   data?.slice(1,4).map((i) =>
-                     <div className="flex items-center gap-6 xl:flex-wrap md:flex-[0_0_200px]">
+                     <div key={i.id} className="flex items-center gap-6 xl:flex-wrap md:flex-[0_0_200px]">
                         <img className='w-[190px] h-[176px] object-cover rounded-xl' src={i.img} alt={i.name} />
                         <div className="">
                            <span className='mb-3 flex gap-4 '><span className='block relative modal__after after:top-[50%] after:right-[-10px] tez'>{i.date}</span>{i.category}</span>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SearchBar } from '../components/searchBar/SearchBar';
 import b1 from '../assets/img/blog/01.jpg'
 import news1 from '../assets/img/blog/b1.png'
@@ -17,10 +17,8 @@ import { fetchArticles } from '../redux/slices/articlesSlice';
 export const Blog = () => {
   const dispatch = useDispatch()
   const {articlesData} = useSelector(state => state.articles);
-  useEffect(() => {
-    dispatch( fetchArticles())
-  
-  },[])
+ 
+ 
   return (
     <>
       <section className='mb-20 mt-20 md:mt-3'>
@@ -44,7 +42,7 @@ export const Blog = () => {
       <ArticlesBlog data={articlesData.slice(0, 4)}/>
       <PopularArticles data={articlesData.filter((obj) => obj.rating >= 5 )}/>
       <RecentlyArticles/>
-      <CareerTips/>  
+      <CareerTips data={articlesData.filter((obj) => obj.category.toLowerCase() == 'career tips')}/>  
     </>
 
   )

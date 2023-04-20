@@ -10,13 +10,15 @@ import { fetchJobs } from './redux/slices/jobsSlice'
 import { useState } from "react"
 import { transformArr } from "./utils/transformArr"
 import { Hiring } from "./pages/Hiring"
-
+import { Articles } from "./pages/Articles"
+import { fetchArticles } from './redux/slices/articlesSlice';
+import { Article } from "./pages/Article"
 
 function App() {
 
   const dispatch = useDispatch();
 
-  const { experience, category, employment, salary, location,sort } = useSelector(state => state.filter)
+  const { experience, category, employment, salary, location, sort } = useSelector(state => state.filter)
 
   // filters
   const exp = experience.map(item => `&experience=${item}`)
@@ -24,10 +26,13 @@ function App() {
   const empl = employment.map(item => `&q=${item}`)
   const sal = salary.map(item => `&salary=${item}`)
   const loc = location.map(item => `&country=${item}`)
-// sorts
-  const sortFinal =  sort.id === 1 ? `&_sort=date` : '' || sort.id === 2 ? `&_sort=date&_order=desc` : '' || sort.id === 3 ? `&_sort=rating&_order=desc` : '';
+  // sorts
+  const sortFinal = sort.id === 1 ? `&_sort=date` : '' || sort.id === 2 ? `&_sort=date&_order=desc` : '' || sort.id === 3 ? `&_sort=rating&_order=desc` : '';
 
-  console.log(sortFinal)
+
+
+
+  
   useEffect(() => {
 
 
@@ -40,7 +45,10 @@ function App() {
       sortFinal
     }));
   }, [experience, category, employment, salary, location, sort])
-
+  useEffect(() => {
+    dispatch( fetchArticles())
+  
+  },[])
 
   return (
     <div className="App h-[100%] flex flex-col">
@@ -50,9 +58,13 @@ function App() {
 
           <Route path="/" element={<Home />} />
           <Route path="/candidats" element={<Candidats />} />
-          <Route path="/hiring" element={<Hiring/>} />
+          <Route path="/hiring" element={<Hiring />} />
           <Route path="/company" element={<Company />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog" element={<Blog />}>
+              
+          </Route>
+          <Route path="/blog/articles" element={<Articles />} />
+          <Route path="/blog/:id" element={<Article/>} />
 
         </Route >
 
