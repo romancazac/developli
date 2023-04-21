@@ -22,6 +22,7 @@ export const fetchArticles = createAsyncThunk(
 
 const initialState = {
    articlesData: [],
+   articleSearch:[],
    totalCount: 0,
    status: "loading"
 
@@ -33,9 +34,9 @@ export const articlesSlice = createSlice({
 
    initialState,
    reducers: {
-      // setarticles(state, action) {
-      //    state.articles= action.payload;
-      // }
+      setaArticlesSearch(state, action) {
+         state.articleSearch = action.payload;
+      }
 
    },
    extraReducers: {
@@ -58,5 +59,5 @@ export const articlesSlice = createSlice({
    }
 })
 
-export const { setaArticles } = articlesSlice.actions;
+export const { setaArticles,setaArticlesSearch } = articlesSlice.actions;
 export default articlesSlice.reducer

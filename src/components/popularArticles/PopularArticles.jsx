@@ -5,17 +5,11 @@ import { Link } from 'react-router-dom';
 export const PopularArticles = ({ data }) => {
 
    return (
-      <Section >
-         <div className="flex items-center justify-between mb-[50px]">
-
-            <div>
-               <h2 className="text-black text-2xl font-bold mb-2 sm:text-base">Popular Articles</h2>
-               <p className="text-gray ">We provide blog that help start your career on developli</p>
-            </div>
-
-            <Link to='/blog/articles' className='btn-block'>View All<span className='icon-arrow-right2 align-middle'></span></Link>
-
-         </div>
+      <Section 
+      title='Popular Articles' 
+      text='We provide blog that help start your career on developli'
+      >
+      
          <div className="flex gap-8 md:flex-wrap">
             {
                data?.slice(0, 2).map((i) =>

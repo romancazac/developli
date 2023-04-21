@@ -13,14 +13,15 @@ import { Hiring } from "./pages/Hiring"
 import { Articles } from "./pages/Articles"
 import { fetchArticles } from './redux/slices/articlesSlice';
 import { Article } from "./pages/Article"
+import { Search } from "./pages/Search"
 
 function App() {
 
   const dispatch = useDispatch();
 
   const { experience, category, employment, salary, location, sort } = useSelector(state => state.filter)
-
-  // filters
+  const {paginationPage} = useSelector(state => state.jobs)
+  // filters query params
   const exp = experience.map(item => `&experience=${item}`)
   const cat = category.map(item => `category=${item}`)
   const empl = employment.map(item => `&q=${item}`)
@@ -42,11 +43,12 @@ function App() {
       filterEmployment: transformArr(empl),
       filterSalary: transformArr(sal),
       filterLocation: transformArr(loc),
-      sortFinal
+      sortFinal,
+      paginationPage
     }));
-  }, [experience, category, employment, salary, location, sort])
+  }, [experience, category, employment, salary, location, sort,paginationPage])
   useEffect(() => {
-    dispatch( fetchArticles())
+    dispatch(fetchArticles())
   
   },[])
 
@@ -65,6 +67,7 @@ function App() {
           </Route>
           <Route path="/blog/articles" element={<Articles />} />
           <Route path="/blog/:id" element={<Article/>} />
+          <Route path="/search" element={<Search/>} />
 
         </Route >
 

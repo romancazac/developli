@@ -11,17 +11,11 @@ export const RecentlyArticles = () => {
    const sortedArticles = [...articlesData].sort((a, b) => new Date(b.date) - new Date(a.date));
 
    return (
-      <Section>
-         <div className="flex items-center justify-between mb-[50px]">
-
-            <div>
-               <h2 className="text-black text-2xl font-bold mb-2 sm:text-base">Recently Articles</h2>
-               <p className="text-gray ">Newest update article from jobify</p>
-            </div>
-
-            <Link to='/blog/articles' className='btn-block'>View All<span className='icon-arrow-right2 align-middle'></span></Link>
-
-         </div>
+      <Section
+      title='Recently Articles' 
+      text='Newest update article from jobify'
+      >
+        
          <div className="flex gap-8 md:overflow-x-auto">
             {
                sortedArticles?.slice(0,3).map((a) =>

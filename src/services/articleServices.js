@@ -9,6 +9,9 @@ export const useAppServices = () => {
     const getArticle = (id) => {
         return request(`${BASE_URL}/articles/${id}`)
     }
+    const getArticleSearch = (name) => {
+        return request(`${BASE_URL}/articles?q=${name}`)
+    }
 
-    return { error, loading, succes, getArticle }
+    return { error, loading, succes, getArticle,getArticleSearch }
 }

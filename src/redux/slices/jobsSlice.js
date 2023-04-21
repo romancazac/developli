@@ -12,24 +12,26 @@ export const fetchJobs = createAsyncThunk(
          filterEmployment,
          filterSalary,
          filterLocation,
-         sortFinal
+         sortFinal,
+         paginationPage
       } = params;
 
-      const response = await axios.get(`${BASE_URL}/jobs?${filterExp}${filterCategory}${filterEmployment}${filterSalary}${filterLocation}${sortFinal}&_start=0`)
-      // const totalCount = response.headers['x-total-count'];
+      const response = await axios.get(`${BASE_URL}/jobs?${filterExp}${filterCategory}${filterEmployment}${filterSalary}${filterLocation}${sortFinal}&_page=${paginationPage}&_limit=5`)
+      const totalCount = response.headers['x-total-count'];
  
-      return response.data
+      // return response.data
 
-      // return {
-      //    jobs: response.data,
-      //    totalCount
-      // }
+      return {
+         jobs: response.data,
+         totalCount
+      }
    }
 )
 
 const initialState = {
    jobsData: [],
    totalCount: 0,
+   paginationPage:1,
    status: "loading"
 
 
@@ -40,9 +42,9 @@ export const jobsSlice = createSlice({
 
    initialState,
    reducers: {
-      // setJobs(state, action) {
-      //    state.jobs= action.payload;
-      // }
+      setPaginationPage(state, action) {
+         state.paginationPage= action.payload;
+      }
 
    },
    extraReducers: {
@@ -52,9 +54,9 @@ export const jobsSlice = createSlice({
          state.totalCount = 0;
       },
       [fetchJobs.fulfilled]: (state, action) => {
-         state.jobsData = action.payload;
-
-
+  
+         state.jobsData = action.payload.jobs;
+         state.totalCount= action.payload.totalCount   
          state.status = 'succes';
       },
       [fetchJobs.rejected]: (state) => {
@@ -65,5 +67,5 @@ export const jobsSlice = createSlice({
    }
 })
 
-export const { setJobs } = jobsSlice.actions;
+export const { setPaginationPage } = jobsSlice.actions;
 export default jobsSlice.reducer

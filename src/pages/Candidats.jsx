@@ -5,11 +5,17 @@ import { SearchBar } from '../components/searchBar/SearchBar'
 import { TopCandidats } from '../components/topCandidats/TopCandidats'
 
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import Pagination from '../components/pagination/Pagination'
+import { setPaginationPage } from '../redux/slices/jobsSlice'
 
 
 export const Candidats = () => {
-  const {jobsData} = useSelector(state => state.jobs)
+  const dispatch = useDispatch();
+  const { jobsData, totalCount } = useSelector(state => state.jobs);
+  const onPaginationPage = (nr) => {
+    dispatch(setPaginationPage(nr))
+  }
 
   return (
     <>
@@ -27,6 +33,11 @@ export const Candidats = () => {
               }
 
             </div>
+           
+              <Pagination onPaginationPage={onPaginationPage} totalCount={totalCount} limitPage={5} />
+           
+            
+
           </div>
         </div>
       </div>
