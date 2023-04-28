@@ -2,14 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import filter from './slices/filterSlice';
 import jobs from './slices/jobsSlice';
 import articles from './slices/articlesSlice';
-
+import auth from './slices/authSlice'
 export const store = configureStore({
   reducer: {
     filter,
     jobs,
-    articles
+    articles,
     // cart,
-    // auth,
+    auth
     // wish,
     // compare,
     // categories,

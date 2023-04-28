@@ -11,11 +11,16 @@ import { setPaginationPage } from '../redux/slices/jobsSlice'
 
 
 export const Candidats = () => {
+
   const dispatch = useDispatch();
   const { jobsData, totalCount } = useSelector(state => state.jobs);
   const onPaginationPage = (nr) => {
     dispatch(setPaginationPage(nr))
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  },[jobsData])
 
   return (
     <>

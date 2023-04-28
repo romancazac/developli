@@ -1,16 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsMob, setOpenFilter } from "../../redux/slices/filterSlice";
+import { useAppServices } from "../../services/jobServices";
+import { calcCountAside } from "../../utils/calcContAside";
 
 
 import Spollers from '../ui/Spollers'
 
 
 export const Aside = () => {
-   const isMounded = false
-   const dispatch = useDispatch()
+
+   const dispatch = useDispatch();
+   const {getJobsFromCompare} = useAppServices()
    const { openFilter } = useSelector(state => state.filter);
-   const { jobsData } = useSelector(state => state.jobs);
+   const [updatedAsideData, setUpdatedAsideData] = useState([]);
+
    const asideData = [
       {
          id: 1,
@@ -33,7 +37,7 @@ export const Aside = () => {
                count: 188
             },
             {
-               title: '10+ years',
+               title: '10 years',
                id: 4,
                count: 188
             },
@@ -125,7 +129,7 @@ export const Aside = () => {
                count: 188
             },
             {
-               title: '6000',
+               title: '7000',
                id: 4,
                count: 188
             },
@@ -176,26 +180,16 @@ export const Aside = () => {
 
    ]
    const [open, setOpen] = useState(1);
-   const [asideDataUpdate, setAsideDataUpdate] = useState([]);
-
-   const handleOpen = (value) => {
+ 
+   const handleOpenSpoller = (value) => {
       setOpen(open === value ? 0 : value);
    };
 
-   const updatedAsideData = asideData?.map((item) => {
-      const countArr = item.items.map((i) => {
-        return asideDataUpdate.filter((job) => job[item.label] === i.title).length;
-      });
-      const count = countArr.reduce((a, b) => a + b, 0); // suma tuturor count-urilor din array
-      if (count === 0 && item.items.some((i) => i.title !== "")) { // verificare count == 0 și cel puțin un titlu nu este gol
-        const items = item.items.map((i, idx) => ({ ...i, count: countArr[idx] }));
-        return { ...item, items };
-      } else {
-        const items = item.items.map((i, idx) => ({ ...i, count: countArr[idx] }));
-        return { ...item, items };
-      }
-    });
 
+   useEffect(() => {     
+      getJobsFromCompare().then((data) => setUpdatedAsideData(data))
+      
+   }, []);
 
 
    const renderTopMob = () => {
@@ -216,7 +210,7 @@ export const Aside = () => {
 
       if (window.innerWidth < 767) {
          dispatch(setIsMob(true));
-         
+
       } else {
          dispatch(setIsMob(false));
       }
@@ -230,9 +224,7 @@ export const Aside = () => {
          window.removeEventListener("resize", resizeW);
       };
    }, []);
-   useEffect(() => {
-      setAsideDataUpdate(jobsData)
-   },[])
+
    return (
       <>
 
@@ -240,8 +232,8 @@ export const Aside = () => {
             <div className="bg-white rounded-[12px] px-[20px] py-[25px] md:h-full md:flex md:flex-col">
                {renderTopMob()}
                {
-                  updatedAsideData.map((item) =>
-                     <Spollers key={item.id} item={item} handleOpen={handleOpen} open={open} />
+                  calcCountAside(asideData, updatedAsideData).map((item) =>
+                     <Spollers key={item.id} item={item} handleOpen={handleOpenSpoller} open={open} />
                   )
                }
                {openFilter &&

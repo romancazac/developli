@@ -10,7 +10,9 @@ export const Article = () => {
    const [article, setArticle] = useState({})
    useEffect(() => {
       getArticle(id).then((data) => setArticle(data))
+      window.scrollTo(0, 0);
    }, [id])
+
    return (
 
       <>

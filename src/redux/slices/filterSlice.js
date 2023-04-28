@@ -30,7 +30,7 @@ export const filterSlice = createSlice({
          } else if (value === 'category') {        
             state.category =  setFilter(state.category, title) 
 
-         } else if (value === 'location') {        
+         } else if (value === 'country') {        
             state.location=  setFilter(state.location, title) 
 
          } else if (value === 'employment') {        

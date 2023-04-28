@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
+import LoginPopUp from '../../components/logInPopUp/LogInPopUp'
 import { Navigation } from '../../components/navigation/Navigation'
-import { Button } from '../../components/ui/Button'
+
+import { setOpenPop } from '../../redux/slices/authSlice'
 export const Header = () => {
+  const dispatch = useDispatch()
+
   const [openMenu, setOpenMenu] = useState(false);
 
   const onMenu = () => {
@@ -18,7 +23,7 @@ export const Header = () => {
           <div className={`header__items ${openMenu ||  'lg:hidden'}`}>
             <Navigation />
             <div className="lg:mb-[20px]">
-              <button className='flex  items-center font-semibold hover:text-green ease-in duration-75 '><span className='icon-user pr-2'></span>Login</button>
+              <button onClick={() => dispatch(setOpenPop(true))} className='flex  items-center font-semibold hover:text-green ease-in duration-75 '><span className='icon-user pr-2'></span>Login</button>
             </div>
 
             <div className="flex gap-2 lg:flex-col">
@@ -33,6 +38,7 @@ export const Header = () => {
           </button>
         </div>
       </div>
+      <LoginPopUp/>
     </header>
   )
 }

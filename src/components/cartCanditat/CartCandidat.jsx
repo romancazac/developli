@@ -1,12 +1,17 @@
 import { Button } from '@material-tailwind/react';
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useAppServices } from '../../services/jobServices';
+import ApplyPopUp from '../applyPopUp/ApplyPopUp';
 import PopUp from '../popUp/PopUp'
 
 export const CartCandidat = ({id, name, avatar, text, author, salary, country, types,classN }) => {
-   const {getJob} = useAppServices()
+   const {getJob} = useAppServices();
    const [open, setOpen] = useState(false);
-   const [job, setJob] = useState({})
+   const [openAplly, setOpenApply] = useState(false);
+   const [job, setJob] = useState({});
+   const {user} = useSelector(state => state.auth);
+
    const handleOpen = (idn) => {
       if(idn){
          getJob(idn).then((data) => setJob(data))
@@ -15,6 +20,9 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
       setOpen((cur) => !cur)
    
    };
+   const handleOpenApply = () => {
+      setOpenApply((cur) => !cur)
+   }
 
    return (
       <div className={`bg-[rgba(255,255,255,0.8)] rounded-[16px] shadow-bar p-6 text-gray mb-9 ${classN}`}>
@@ -52,12 +60,12 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
 
          </div>
          <div className="flex gap-4">
-            <button className='bg-green text-white px-8 py-4 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75  md:px-3'><span className='icon-file-text2'></span> Apply Now</button>
+            <button onClick={handleOpenApply} className='bg-green text-white px-8 py-4 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75  md:px-3'><span className='icon-file-text2'></span> Apply Now</button>
             <button onClick={ () =>  handleOpen(id)} className='bg-[#F3F3F3] text-gray px-8 py-4 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75  md:px-3'>Detail Information</button>
          </div>
 
          <PopUp {...job} handleOpen={handleOpen} open={open}/>
-            
+         <ApplyPopUp handleOpen={handleOpenApply} open={openAplly}/>      
          
        
       </div>

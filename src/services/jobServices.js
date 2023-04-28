@@ -19,10 +19,12 @@ export const useAppServices = () => {
     //  const getNew = (id) => {
     //      return request(`${BASE_URL}/news/${id}`)
     //  }
-
+    const getJobsFromCompare = () => {
+        return request(`${BASE_URL}/jobs`)
+    }
     const getJob = (id) => {
         return request(`${BASE_URL}/jobs/${id}`)
     }
 
-    return { error, loading, succes, getJob }
+    return { error, loading, succes, getJob,getJobsFromCompare }
 }
