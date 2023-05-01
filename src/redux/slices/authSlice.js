@@ -9,7 +9,8 @@ import { BASE_URL } from '../../constants';
 export const fetchSingIn = createAsyncThunk(
     'user/fetchSingInstatus',
     async (params) => {
-      const {username, password} = params
+      const { username, password } = params
+
       const { data} = await axios.post(`${BASE_URL}/login`, {
         username,
         password
@@ -19,7 +20,7 @@ export const fetchSingIn = createAsyncThunk(
         }
       });
      
-      return data;
+      return data
     }
 
     
@@ -41,8 +42,9 @@ export const fetchAuthMe = createAsyncThunk(
 export const fetchRegistration = createAsyncThunk(
     'user/fetchRegistrationMestatus',
     async (data) => {
-     const {email,password,phone,username} = data;
-        const { res} = await axios.post(`${BASE_URL}/register`, {
+      const { email, password, phone, username } = data;
+    
+        const res = await axios.post(`${BASE_URL}/register`, {
           email,
           password,
           phone,
@@ -52,7 +54,7 @@ export const fetchRegistration = createAsyncThunk(
             'Content-Type': 'application/json'
           }
         });
-        return res;
+        return res.data;
       }
 
 
@@ -66,7 +68,8 @@ const userSlice = createSlice({
       token: null,
       loading: false,
       error: null,
-      popUp:false
+      popUp: false,
+      registrationForm:false
     },
     reducers: {
 
@@ -78,7 +81,10 @@ const userSlice = createSlice({
       },
       setOpenPop: (state, action) => {
          state.popUp = action.payload
-      }
+      },
+      setRegistration: (state, action) => {
+        state.registrationForm = action.payload
+     }
     },
     extraReducers: {
       [fetchAuthMe.pending]: (state) => {
@@ -102,7 +108,7 @@ const userSlice = createSlice({
         state.loading = true;
       },
       [fetchSingIn.fulfilled]: (state, action) => {
-        console.log(action)
+        
         state.user = action.payload;
         state.token = action.payload.token;
         state.loading = false;
@@ -132,7 +138,7 @@ const userSlice = createSlice({
 });
 export const selectIsAuth = state => Boolean(state.auth.user)
 
-export const {setOpenPop, loginStart, loginSuccess, loginFailure, registerStart, registerSuccess, registerFailure, logout } = userSlice.actions;
+export const {setRegistration,setOpenPop, loginStart, loginSuccess, loginFailure, registerStart, registerSuccess, registerFailure, logout } = userSlice.actions;
 
 
 export default userSlice.reducer;

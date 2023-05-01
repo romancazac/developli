@@ -65,7 +65,7 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
          </div>
 
          <PopUp {...job} handleOpen={handleOpen} open={open}/>
-         <ApplyPopUp handleOpen={handleOpenApply} open={openAplly}/>      
+         <ApplyPopUp handleOpen={handleOpenApply} open={openAplly} title={name} id={id} />      
          
        
       </div>

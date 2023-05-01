@@ -2,17 +2,16 @@ import React from "react";
 import {
    Dialog,
    DialogBody,
-   DialogFooter,
-
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setOpenPop } from "../../redux/slices/authSlice";
+import { setOpenPop, setRegistration } from "../../redux/slices/authSlice";
 import { LogInForm } from "../logInForm/LogInForm";
+import { RegistrationForm } from "../registrationForm/RegistrationForm";
 
-export default function LoginPopUp({ handleOpen}) {
-   const {popUp} = useSelector(state => state.auth)
+export default function LoginPopUp() {
+   const { popUp, registrationForm } = useSelector(state => state.auth)
    const dispatch = useDispatch()
    return (
       <React.Fragment>
@@ -28,10 +27,20 @@ export default function LoginPopUp({ handleOpen}) {
             </div>
             <DialogBody className="overflow-y-auto p-0 md:h-96">
                <div className="mb-6">
-                  <LogInForm  handleOpen={ handleOpen}/>
+                  {
+                     registrationForm ? 
+                        <RegistrationForm />
+                        :
+                        <>
+                           <LogInForm />
+                          
+                        </>
+
+                  }
+
                </div>
             </DialogBody>
-     
+
          </Dialog>
       </React.Fragment>
    );

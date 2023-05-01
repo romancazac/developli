@@ -14,13 +14,15 @@ import { Articles } from "./pages/Articles"
 import { fetchArticles } from './redux/slices/articlesSlice';
 import { Article } from "./pages/Article"
 import { Search } from "./pages/Search"
+import { fetchAuthMe } from "./redux/slices/authSlice"
 
 function App() {
 
   const dispatch = useDispatch();
+  const { user } = useSelector(state => state.auth);
+  const { experience, category, employment, salary, location, sort } = useSelector(state => state.filter);
+  const { paginationPage } = useSelector(state => state.jobs);
 
-  const { experience, category, employment, salary, location, sort } = useSelector(state => state.filter)
-  const {paginationPage} = useSelector(state => state.jobs)
   // filters query params
   const exp = experience.map(item => `&experience=${item}`)
   const cat = category.map(item => `category=${item}`)
@@ -49,9 +51,17 @@ function App() {
   }, [experience, category, employment, salary, location, sort,paginationPage])
   useEffect(() => {
     dispatch(fetchArticles())
-  
   },[])
-
+   // verificăm dacă utilizatorul este autentificat pe baza token-ului din localStorage
+   useEffect(() => {
+    if (!user) {
+      const token = localStorage.getItem('token');
+      if (token) {
+        dispatch(fetchAuthMe(token))
+        
+      }
+    }
+  }, [dispatch, user]);
   return (
     <div className="App h-[100%] flex flex-col">
 
