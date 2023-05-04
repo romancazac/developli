@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const CartArticle = ({img,name,id,date,category}) => {
 
    return (
-      <div className="flex-[0_1_calc(33.3333%-30px)]">
+      <div className="flex-[0_1_33.3333%] px-[15px]  mb-[30px] md:flex-[0_1_50%]">
          
          <div className="relative _ibg _ibg-cover pb-[78%] mb-6 rounded-2xl overflow-hidden">
             <img src={img} alt="" />

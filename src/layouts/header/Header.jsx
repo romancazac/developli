@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../assets/img/logo.png'
 import LoginPopUp from '../../components/logInPopUp/LogInPopUp'
 import { Navigation } from '../../components/navigation/Navigation'
@@ -8,12 +8,15 @@ import { Navigation } from '../../components/navigation/Navigation'
 import { setOpenPop } from '../../redux/slices/authSlice'
 export const Header = () => {
   const dispatch = useDispatch()
-
+  const history = useNavigate()
   const [openMenu, setOpenMenu] = useState(false);
 
   const onMenu = () => {
     setOpenMenu(!openMenu)
   }
+  useEffect(() => {
+    setOpenMenu(false)
+ },[history])
   return (
     <header >
       
@@ -21,7 +24,7 @@ export const Header = () => {
         <div className="flex items-center justify-between  py-6 font-semibold">
           <a href="/" className="block mr-[20px]"><img src={logo} alt="logo" /></a>
           <div className={`header__items ${openMenu ||  'lg:hidden'}`}>
-            <Navigation />
+            <Navigation  />
             <div className="lg:mb-[20px]">
               <button onClick={() => dispatch(setOpenPop(true))} className='flex  items-center font-semibold hover:text-green ease-in duration-75 '><span className='icon-user pr-2'></span>Login</button>
             </div>

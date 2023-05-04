@@ -197,7 +197,7 @@ export const Aside = () => {
          <>
             {
                openFilter &&
-               <div className="flex justify-between items-center mb-8">
+               <div className="flex justify-between items-center mb-8 mt-10">
                   <button className="text-[#1B2124] font-bold">Filters</button>
                   <button className="text-[#EE5566]">Clear</button>
                </div>

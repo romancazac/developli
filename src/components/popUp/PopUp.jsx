@@ -13,7 +13,7 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
    return (
       <React.Fragment>
 
-         <Dialog size="lg" open={open} handler={handleOpen} className="max-w-[715px!important] min-w-[auto] md:min-w-[100%] p-5">
+         <Dialog size="lg" open={open} handler={handleOpen} className="max-w-[715px!important] min-w-[auto] md:min-w-[90%] p-5">
             <div className="flex justify-between items-center mb-6">
                <img src={avatar} alt={name} />
                <div className="flex items-center gap-4 ">

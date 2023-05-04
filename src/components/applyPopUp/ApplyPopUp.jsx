@@ -24,7 +24,7 @@ export default function ApplyPopUp({ handleOpen, open,title,id}) {
    return (
       <React.Fragment>
 
-         <Dialog size="lg" open={open} handler={handleOpen} className="max-w-[715px!important] min-w-[auto] md:min-w-[100%] p-5">
+         <Dialog size="lg" open={open} handler={handleOpen} className="max-w-[715px!important] min-w-[auto] xl:min-w-[90%] p-5">
             <div className="flex justify-between items-center mb-6">
                <p className="text-3xl text-blackColor font-semibold">Apply to {title }</p>
                <div className="flex items-center gap-4 ">

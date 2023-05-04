@@ -26,7 +26,7 @@ export const Candidats = () => {
     <>
       <SearchBar />
       <div className="container">
-        <div className="flex gap-[20px] ">
+        <div className="flex gap-[20px] mb-3">
           <Aside />
           <div className="flex-auto">
             <TopCandidats />

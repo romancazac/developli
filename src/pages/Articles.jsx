@@ -16,7 +16,7 @@ export const Articles = () => {
                   <h1 className='font-bold text-2xl text-blackColor'>Recent Articles</h1>
                   <p className='text-gray font-semibold'>Newest update article from developli</p>
                </div>
-               <div className="flex flex-wrap gap-[30px] ">
+               <div className="flex flex-wrap mx-[-15px] ">
                   {
                      articlesData?.map((a) =>
                         <CartArticle key={a.id} {...a}  />

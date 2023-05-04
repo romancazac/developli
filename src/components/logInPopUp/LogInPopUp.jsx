@@ -16,7 +16,7 @@ export default function LoginPopUp() {
    return (
       <React.Fragment>
 
-         <Dialog size="sm" open={popUp} handler={() => dispatch(setOpenPop(false))} className="max-w-[715px!important] min-w-[auto] md:min-w-[100%] p-5">
+         <Dialog size="sm" open={popUp} handler={() => dispatch(setOpenPop(false))} className="max-w-[715px!important] min-w-[auto] md:min-w-[90%] p-5">
             <div className="flex justify-between items-center mb-6">
                <p className="text-3xl text-blackColor font-semibold">Hi There, Welcome!</p>
                <div className="flex items-center gap-4 ">

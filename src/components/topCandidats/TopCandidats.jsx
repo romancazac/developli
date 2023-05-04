@@ -1,11 +1,16 @@
 import { Button } from '@material-tailwind/react'
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import Select from '../ui/Select'
-
+import { useDispatch } from 'react-redux'
+import { setSort } from '../../redux/slices/filterSlice';
 export const TopCandidats = () => {
+  const dispatch = useDispatch()
   const { experience, category, employment, salary, location } = useSelector(state => state.filter);
   const arrLabel = [...experience, ...category, ...employment, ...salary, ...location];
+ 
+ 
+ 
 
   const dataSort = [
     {
@@ -24,6 +29,10 @@ export const TopCandidats = () => {
 
     },
   ]
+ 
+  const onDispatchSort = (value) => {
+    dispatch(setSort(value))
+  }
   return (
     <div className=' mb-9'>
       <div className="flex justify-between mb-7">
@@ -33,7 +42,7 @@ export const TopCandidats = () => {
         </div>
         <div className="flex items-center gap-[12px]">
           <span className='whitespace-nowrap text-gray md:hidden'>sort by: </span>
-          <Select data={dataSort} className={'bg-white w-[144px] rounded-[16px]'} />
+          <Select data={dataSort}  onDispatch={onDispatchSort}  className={'bg-white w-[144px] rounded-[16px]'} />
         </div>
       </div>
       <div className="flex gap-[10px] flex-wrap">

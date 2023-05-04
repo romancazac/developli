@@ -66,6 +66,7 @@ const userSlice = createSlice({
     initialState: {
       user: null,
       token: null,
+      phone: null,
       loading: false,
       error: null,
       popUp: false,
@@ -90,10 +91,12 @@ const userSlice = createSlice({
       [fetchAuthMe.pending]: (state) => {
         state.user = ''
         state.token = ''
+        state.phone = ''
         state.loading = true;
       },
       [fetchAuthMe.fulfilled]: (state, action) => {     
         state.user = action.payload;
+        state.phone = action.payload.phone
         state.loading = false;
       },
       [fetchAuthMe.rejected]: (state) => {
@@ -105,12 +108,14 @@ const userSlice = createSlice({
       [fetchSingIn.pending]: (state) => {
         state.user = ''
         state.token = ''
+        state.phone = ''
         state.loading = true;
       },
       [fetchSingIn.fulfilled]: (state, action) => {
         
         state.user = action.payload;
         state.token = action.payload.token;
+        state.phone = action.payload.phone
         state.loading = false;
       },
       [fetchSingIn.rejected]: (state) => {

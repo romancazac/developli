@@ -14,10 +14,10 @@
     @apply max-w-[1260px]
   }
   .section-main{
-    @apply  pl-[max(15px,calc((100%-1230px)/2))]
+    @apply  pl-[max(15px,calc((100%-1230px)/2))] xl:px-3
   }
   .header__items{
-    @apply flex justify-between items-center max-w-[930px] w-[100%] lg:flex-col  lg:fixed lg:left-0 lg:top-0 lg:w-[100%] lg:h-[100%] z-10 lg:bg-[#f0f2c7d3] lg:py-[50px] lg:justify-start
+    @apply flex justify-between items-center max-w-[930px] w-[100%] lg:flex-col  lg:fixed lg:left-0 lg:top-0 lg:w-[100%] lg:h-[100%] z-10 lg:bg-[#f0f2c7d3] lg:py-[50px] lg:justify-start z-50
   }
   ._ibg img{
     @apply absolute w-[100%] h-[100%] object-contain object-top 

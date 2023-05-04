@@ -7,7 +7,7 @@ import { CheckIcon } from '@heroicons/react/20/solid'
 
 
 
-export default function Select({onDispatch, data, className=null}) {
+export default function SelectContacts({name,setFieldValue, data, className=null}) {
 
    const [selected, setSelected] = useState(data[0])
    function classNames(...classes) {
@@ -16,9 +16,7 @@ export default function Select({onDispatch, data, className=null}) {
    
     
    useEffect(() => {
-     
-      onDispatch(selected)
-
+      setFieldValue(name,selected.name)
    },[selected])
  
   
@@ -28,7 +26,7 @@ export default function Select({onDispatch, data, className=null}) {
             <>
                <div className="relative w-[100%]">
                   
-                  <Listbox.Button className={`relative w-[100%] cursor-pointer rounded-md  py-1.5 pl-3 pr-10 text-left text-gray-900   focus:outline-none  sm:text-sm sm:leading-6 ${className}`}>
+                  <Listbox.Button className={`relative w-[100%] cursor-pointer rounded-md  p-3 bg-[#F6F8F9] rounded-xl  pr-10 text-left text-gray-900   focus:outline-none  sm:text-sm sm:leading-6 ${className}`}>
                      <span className="flex items-center">
                         <span className=" block truncate">{selected?.name}</span>
                      </span>

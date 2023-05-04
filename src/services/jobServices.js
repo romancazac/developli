@@ -6,19 +6,6 @@ export const useAppServices = () => {
 
     const { request, error, loading, succes } = useHttp()
 
-    //  const postComands =  (body) => {   
-    //      return request(`${BASE_URL}/comands`,"POST",body)   
-    //  }
-    //  const postMessageContacts = (body) => {
-    //      return request(`${BASE_URL}/messages`,"POST",body)   
-    //  }
-
-    //  const getNews = () => {
-    //      return request(`${BASE_URL}/news`)
-    //  }
-    //  const getNew = (id) => {
-    //      return request(`${BASE_URL}/news/${id}`)
-    //  }
     const getJobsFromCompare = () => {
         return request(`${BASE_URL}/jobs`)
     }
