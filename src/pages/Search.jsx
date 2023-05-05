@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { CareerTips } from '../components/careerTips/careerTips'
+import { CareerTips } from '../components/careerTips/CareerTips'
 
 export const Search = () => {
 

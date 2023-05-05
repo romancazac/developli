@@ -7,6 +7,7 @@ import { setSort } from '../../redux/slices/filterSlice';
 export const TopCandidats = () => {
   const dispatch = useDispatch()
   const { experience, category, employment, salary, location } = useSelector(state => state.filter);
+  const { totalCount} = useSelector(state => state.jobs);
   const arrLabel = [...experience, ...category, ...employment, ...salary, ...location];
  
  
@@ -38,7 +39,7 @@ export const TopCandidats = () => {
       <div className="flex justify-between mb-7">
         <div className="mr-[15px]">
           <h1 className="text-black text-2xl font-bold mb-2 sm:text-base">Recomendation</h1>
-          <p className="text-gray ">38 product designer Jobs in United States</p>
+          <p className="text-gray ">Available {totalCount} Jobs</p>
         </div>
         <div className="flex items-center gap-[12px]">
           <span className='whitespace-nowrap text-gray md:hidden'>sort by: </span>

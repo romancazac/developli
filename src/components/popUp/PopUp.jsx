@@ -7,7 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-export default function PopUp({ handleOpen, open, avatar, name, author, country, types, level, experience, requirements, text, salary }) {
+export default function PopUp({handleOpens, handleOpen, open, avatar, name, author, country, types, level, experience, requirements, text, salary }) {
 
 
    return (
@@ -93,8 +93,8 @@ export default function PopUp({ handleOpen, open, avatar, name, author, country,
                   Are you interested in this Job?
                </Typography>
                <div className="flex gap-4">
-                  <button className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75 text-base'><span className='icon-file-text2'></span> Apply Now</button>
-                  <button onClick={handleOpen} className='bg-[#F3F3F3] text-gray px-6 py-3 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75 '>Detail Information</button>
+                  <button onClick={() => handleOpens(true)} className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75 text-base'><span className='icon-file-text2'></span> Apply Now</button>
+
                </div>
             </DialogFooter>
          </Dialog>

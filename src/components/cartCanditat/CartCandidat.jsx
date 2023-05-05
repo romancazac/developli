@@ -1,16 +1,21 @@
 import { Button } from '@material-tailwind/react';
-import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
+import React, {  useState } from 'react'
+
 import { useAppServices } from '../../services/jobServices';
 import ApplyPopUp from '../applyPopUp/ApplyPopUp';
 import PopUp from '../popUp/PopUp'
 
+import { AddWish } from '../addWish/AddWish';
+
 export const CartCandidat = ({id, name, avatar, text, author, salary, country, types,classN }) => {
-   const {getJob} = useAppServices();
+  
+   
+   const { getJob } = useAppServices();
+   
    const [open, setOpen] = useState(false);
    const [openAplly, setOpenApply] = useState(false);
    const [job, setJob] = useState({});
-   const {user} = useSelector(state => state.auth);
+   const obj = {id,name}
 
    const handleOpen = (idn) => {
       if(idn){
@@ -24,16 +29,13 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
       setOpenApply((cur) => !cur)
    }
 
+
    return (
       <div className={`bg-[rgba(255,255,255,0.8)] rounded-[16px] shadow-bar p-6 text-gray mb-9 ${classN}`}>
          <div className="flex justify-between items-center mb-6">
             <img src={avatar} alt={name} />
             <div className="flex items-center gap-4 ">
-               <button className='w-[42px] h-[42px] flex justify-center items-center border border-[#F3F3F3] rounded-full text-2xl icon-heart'>
-               </button>
-               <button className='w-[42px] h-[42px] flex justify-center items-center border border-[#F3F3F3] rounded-full text-2xl '>
-                  <span>...</span>
-               </button>
+               <AddWish {...obj} />
             </div>
          </div>
          <h4 className="text-[#1B2124] text-[18px] font-bold mb-4">{name}</h4>
@@ -64,7 +66,7 @@ export const CartCandidat = ({id, name, avatar, text, author, salary, country, t
             <button onClick={ () =>  handleOpen(id)} className='bg-[#F3F3F3] text-gray px-8 py-4 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75  md:px-3'>Detail Information</button>
          </div>
 
-         <PopUp {...job} handleOpen={handleOpen} open={open}/>
+         <PopUp {...job} handleOpen={handleOpen} open={open} handleOpens={handleOpenApply}/>
          <ApplyPopUp handleOpen={handleOpenApply} open={openAplly} title={name} id={id} />      
          
        

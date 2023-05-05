@@ -15,13 +15,14 @@ import { fetchArticles } from './redux/slices/articlesSlice';
 import { Article } from "./pages/Article"
 import { Search } from "./pages/Search"
 import { fetchAuthMe } from "./redux/slices/authSlice"
+import { PostJob } from "./pages/PostJob"
 
 function App() {
 
   const dispatch = useDispatch();
   const { user } = useSelector(state => state.auth);
   const { experience, category, employment, salary, location, sort } = useSelector(state => state.filter);
-  const {jobSearch} = useSelector(state => state.jobs )  
+  const { jobSearch } = useSelector(state => state.jobs)
   const { paginationPage } = useSelector(state => state.jobs);
 
   // filters query params
@@ -34,8 +35,7 @@ function App() {
   const sortFinal = sort.id === 1 ? `&_sort=date` : '' || sort.id === 2 ? `&_sort=date&_order=desc` : '' || sort.id === 3 ? `&_sort=rating&_order=desc` : '';
 
   //search jobs 
-
-  const search = jobSearch.name ? `&country=${jobSearch.country}&q=${jobSearch.name} `:''
+  const search = jobSearch.name ? `&country=${jobSearch.country}&q=${jobSearch.name} ` : ''
 
 
   useEffect(() => {
@@ -49,17 +49,19 @@ function App() {
       paginationPage,
       search
     }));
-  }, [experience, category, employment, salary, location, sort,paginationPage,jobSearch])
+  }, [experience, category, employment, salary, location, sort, paginationPage, jobSearch])
+  
   useEffect(() => {
     dispatch(fetchArticles())
-  },[])
-   // verificăm dacă utilizatorul este autentificat pe baza token-ului din localStorage
-   useEffect(() => {
+  }, [])
+  
+  // verificăm dacă utilizatorul este autentificat pe baza token-ului din localStorage
+  useEffect(() => {
     if (!user) {
       const token = localStorage.getItem('token');
       if (token) {
         dispatch(fetchAuthMe(token))
-        
+
       }
     }
   }, [dispatch, user]);
@@ -68,22 +70,16 @@ function App() {
 
       <Routes>
         <Route path="/" element={<MainLayout />}>
-
           <Route path="/" element={<Home />} />
           <Route path="/candidats" element={<Candidats />} />
           <Route path="/hiring" element={<Hiring />} />
-          <Route path="/blog" element={<Blog />}/>
-              
-         
-          
+          <Route path="/blog" element={<Blog />} />
           <Route path="/blog/articles" element={<Articles />} />
-          <Route path="/blog/:id" element={<Article/>} />
-          <Route path="/search" element={<Search/>} />
+          <Route path="/blog/:id" element={<Article />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/contacts" element={<Company />} />
-
+          <Route path="/post" element={<PostJob/>} />
         </Route >
-
-
       </Routes>
 
     </div>

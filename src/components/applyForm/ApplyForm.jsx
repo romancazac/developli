@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { useAppServices } from '../../services/apply';
 
-export const ApplyForm = ({ title, applyId }) => {
+export const ApplyForm = ({ title, applyId,handleOpen }) => {
    const dispatch = useDispatch();
    const { postApply, succes } = useAppServices()
 
@@ -73,7 +73,7 @@ export const ApplyForm = ({ title, applyId }) => {
                   </div>
                   <div className="flex gap-4">
 
-                     <button onClick={() => dispatch(setRegistration(false))} className='bg-[#F3F3F3] text-gray px-6 py-3 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75 '>Cancel</button>
+                     <button onClick={handleOpen} className='bg-[#F3F3F3] text-gray px-6 py-3 font-semibold rounded-2xl hover:scale-105 ease-in-out duration-75 '>Cancel</button>
                      <button type='submit' className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl hover:scale-105 ease-in-out duration-75 text-base'>Apply</button>
 
                   </div>

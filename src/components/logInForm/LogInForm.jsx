@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 export const LogInForm = () => {
    const dispatch = useDispatch();
    const { error, token, user } = useSelector(state => state.auth)
+   const { countWish } = useSelector(state => state.wish)
 
    const SignupSchema = Yup.object().shape({
       username: Yup.string().required('Required'),
@@ -77,6 +78,7 @@ export const LogInForm = () => {
                   <p> Hello {user.username}</p>
                   <p>Your phone {user.phone}</p>
                   <p>Your email {user.email}</p>
+                  <p>Added in wish {countWish} jobs</p>
                   <button onClick={handleOut} className='bg-green text-white px-6 py-3 font-semibold flex items-center gap-2 rounded-2xl mt-3 hover:scale-105 ease-in-out duration-75 text-base'>Logout</button>
                </div>
 
