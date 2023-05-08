@@ -1,21 +1,12 @@
 import { useEffect } from "react"
-import { Home } from "./pages/Home"
-import { Route, Routes } from "react-router-dom"
-import { MainLayout } from "./layouts/MainLayout"
-import { Candidats } from "./pages/Candidats"
-import { Company } from "./pages/Company"
-import { Blog } from "./pages/Blog"
+import { RouterProvider } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchJobs } from './redux/slices/jobsSlice'
-import { useState } from "react"
 import { transformArr } from "./utils/transformArr"
-import { Hiring } from "./pages/Hiring"
-import { Articles } from "./pages/Articles"
 import { fetchArticles } from './redux/slices/articlesSlice';
-import { Article } from "./pages/Article"
-import { Search } from "./pages/Search"
 import { fetchAuthMe } from "./redux/slices/authSlice"
-import { PostJob } from "./pages/PostJob"
+
+import { routes } from "./routes"
 
 function App() {
 
@@ -67,21 +58,7 @@ function App() {
   }, [dispatch, user]);
   return (
     <div className="App h-[100%] flex flex-col">
-
-      <Routes>
-        <Route path="/" element={<MainLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/candidats" element={<Candidats />} />
-          <Route path="/hiring" element={<Hiring />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blog/articles" element={<Articles />} />
-          <Route path="/blog/:id" element={<Article />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/contacts" element={<Company />} />
-          <Route path="/post" element={<PostJob/>} />
-        </Route >
-      </Routes>
-
+      <RouterProvider router={routes}/>
     </div>
   )
 }

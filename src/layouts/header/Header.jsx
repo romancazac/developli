@@ -26,11 +26,11 @@ export const Header = () => {
           <div className={`header__items ${openMenu ||  'lg:hidden'}`}>
             <Navigation  />
             <div className="lg:mb-[20px]">
-              <button onClick={() => dispatch(setOpenPop(true))} className='flex  items-center font-semibold hover:text-green ease-in duration-75 '><span className='icon-user pr-2'></span>Login</button>
+              <button onClick={() => dispatch(setOpenPop(true))} className='flex  items-center font-semibold hover:text-green ease-in duration-75 lg:text-white'><span className='icon-user pr-2'></span>Login</button>
             </div>
 
             <div className="flex gap-2 lg:flex-col">
-              <Link to='hiring' className='rounded-xl py-3 px-4  hover:scale-105 ease-in duration-300bg-white text-gray border lg:w-[200px]'>Start hiring</Link>
+              <Link to='hiring' className='rounded-xl py-3 px-4  hover:scale-105 ease-in duration-300bg-white text-gray border lg:text-white'>Start hiring</Link>
               <Link to='candidats' className='rounded-xl py-3 px-4  hover:scale-105 ease-in duration-300 bg-textColor text-white '>Find a job</Link>
             </div>
           </div>

@@ -48,10 +48,18 @@ export const filterSlice = createSlice({
       },
       setIsMob(state, action) {
          state.isMob = action.payload
+      },
+      setReset(state) {
+         state.experience = [];   
+         state.employment = [];   
+         state.salary = [];   
+         state.location = [];   
+         state. category = [];   
+   
       }
 
    }
 })
 
-export const { setFilters, setSort,setOpenFilter, setIsMob } = filterSlice.actions;
+export const { setFilters, setSort,setOpenFilter, setIsMob,setReset } = filterSlice.actions;
 export default filterSlice.reducer

@@ -10,7 +10,7 @@ export const CartArticle = ({img,name,id,date,category}) => {
             <img src={img} alt="" />
          </div>
          <span className='mb-3 flex gap-4 '><span className='block relative modal__after after:top-[50%] after:right-[-10px] tez'>{date} </span>{category}</span>
-         <Link to={`/blog/${id}`} className='text-blackColor text-xl font-bold hover:text-green duration-300 ease-in'>{name}</Link>
+         <Link to={`${id}`} className='text-blackColor text-xl font-bold hover:text-green duration-300 ease-in'>{name}</Link>
       </div>
    )
 }

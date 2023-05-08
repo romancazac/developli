@@ -8,7 +8,7 @@ import {
 import { CheckboxC } from "./CheckboxC";
 
 
-export default function Spollers({ item,handleOpen,open }) {
+export default function Spollers({ item,handleOpen,open,mount }) {
  
 
 
@@ -25,9 +25,9 @@ export default function Spollers({ item,handleOpen,open }) {
           {
             item?.items?.map((data,i) =>
             
-              <div className="flex items-center">
+              <div className="flex items-center" key={data.id}>
                 <div className="flex-auto">
-                  <CheckboxC {...data} label={item.label}/>
+                  <CheckboxC {...data} label={item.label} mount={mount } />
                 </div>
                 <span className="flex items-center  bg-[rgba(56,96,226,0.05)] px-[10px] py-[5px] h-[24px] rounded-[10px]">{data.count}</span>
               </div>

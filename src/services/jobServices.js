@@ -12,6 +12,9 @@ export const useAppServices = () => {
     const getJob = (id) => {
         return request(`${BASE_URL}/jobs/${id}`)
     }
+    const postJob = (body) => {
+        return request(`${BASE_URL}/jobs`,"POST",body)
+    }
 
-    return { error, loading, succes, getJob,getJobsFromCompare }
+    return { error, loading, succes, getJob,getJobsFromCompare,postJob }
 }

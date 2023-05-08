@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { setIsMob, setOpenFilter } from "../../redux/slices/filterSlice";
+import { setIsMob, setOpenFilter, setReset } from "../../redux/slices/filterSlice";
 import { useAppServices } from "../../services/jobServices";
 import { calcCountAside } from "../../utils/calcContAside";
 
@@ -14,7 +14,7 @@ export const Aside = () => {
    const {getJobsFromCompare} = useAppServices()
    const { openFilter } = useSelector(state => state.filter);
    const [updatedAsideData, setUpdatedAsideData] = useState([]);
-
+   const [mount, setMount] = useState(false)
    const asideData = [
       {
          id: 1,
@@ -184,13 +184,12 @@ export const Aside = () => {
    const handleOpenSpoller = (value) => {
       setOpen(open === value ? 0 : value);
    };
+   const onReset = () => {
+      dispatch(setReset());
+      setMount(!mount)
+   }
 
-
-   useEffect(() => {     
-      getJobsFromCompare().then((data) => setUpdatedAsideData(data))
-      
-   }, []);
-
+  
 
    const renderTopMob = () => {
       return (
@@ -199,7 +198,7 @@ export const Aside = () => {
                openFilter &&
                <div className="flex justify-between items-center mb-8 mt-10">
                   <button className="text-[#1B2124] font-bold">Filters</button>
-                  <button className="text-[#EE5566]">Clear</button>
+                  <button onClick={onReset} className="text-[#EE5566]">Clear</button>
                </div>
             }
          </>
@@ -216,6 +215,10 @@ export const Aside = () => {
       }
 
    };
+   useEffect(() => {     
+      getJobsFromCompare().then((data) => setUpdatedAsideData(data))
+      
+   }, []);
 
    useEffect(() => {
       window.addEventListener("resize", resizeW);
@@ -225,6 +228,11 @@ export const Aside = () => {
       };
    }, []);
 
+   useEffect(() => {
+      resizeW()
+   }, [])
+   
+
    return (
       <>
 
@@ -233,7 +241,7 @@ export const Aside = () => {
                {renderTopMob()}
                {
                   calcCountAside(asideData, updatedAsideData).map((item) =>
-                     <Spollers key={item.id} item={item} handleOpen={handleOpenSpoller} open={open} />
+                     <Spollers key={item.id} item={item} handleOpen={handleOpenSpoller} open={open} mount={mount } />
                   )
                }
                {openFilter &&
